@@ -37,7 +37,7 @@ todayTime =(today.format('h:mm:ss a'));
 var period9El =document.getElementById("period9");
 var period10El=document.getElementById("period10");
 var period11El=document.getElementById("period11");
-var saveButton=document.getElementById("Btn9");
+var saveButton=document.getElementsByClassName(".Btn");
 
 
 
@@ -50,7 +50,7 @@ var allPeriods={
 localStorage.setItem("allPeriods", JSON.stringify(allPeriods));
 }
 
-console.log(allPeriods);
+
 
 function renderallPeriods() {
 var lastallPeriods=JSON.parse(localStorage.getItem("allPeriods"));
@@ -76,3 +76,13 @@ function init() {
 renderallPeriods();
 }
 init();
+
+function saveNote() {
+  $(".saveBtn").on("click", function () {
+    var value = $(this).siblings(".description").val();
+    var time = $(this).parent().attr("id");
+    console.log(value, time);
+    localStorage.setItem(time, value);
+  });
+}
+saveNote();
